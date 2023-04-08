@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 const getData = () => {
-    return fetch('https://abad.onrender.com/user').then((res) => res.json())
+    return fetch('http://localhost:4500/user').then((res) => res.json())
 }
 
 const DashBoard = () => {

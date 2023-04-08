@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from 'react'
 
 let level = (localStorage.getItem("level")) || "";
 
-const getData = () => {
-    return fetch(`https://abad.onrender.com/quiz?difficulty=${level}`).then((res) => res.json())
+const getData = (level) => {
+    return fetch(`http://localhost:4500/quiz?difficulty=${level}`).then((res) => res.json())
 }
 
 const getUser = () => {
-    return fetch(`https://abad.onrender.com/user`).then((res) => res.json())
+    return fetch(`http://localhost:4500/user`).then((res) => res.json())
 }
 
 const PlayZone = () => {
@@ -42,7 +42,7 @@ const PlayZone = () => {
     setTimeout(() => {
         if (time == 0) {
             console.log("done")
-            fetch(`https://abad.onrender.com/user/${id}`, {
+            fetch(`http://localhost:4500/user/${id}`, {
                 method: "PATCH",
                 body: JSON.stringify(score),
                 headers: {
@@ -56,10 +56,10 @@ const PlayZone = () => {
     }, 1000);
 
     useEffect(() => {
-        getData().then((res) => setData(res[0]))
+        getData(level).then((res) => setData(res[0]))
         getUser().then((res) => setID(res[res.length - 1]._id))
     }, [])
-    console.log(data, data.length, input, input.length, id, score)
+    console.log("#", data, data.length, input, input.length, id, score)
 
     return (
         <div>

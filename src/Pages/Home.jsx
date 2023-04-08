@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const navigate = useNavigate()
     const [name, setName] = useState("")
     const [level, setLevel] = useState("")
 
@@ -11,7 +13,7 @@ const Home = () => {
             difficulty: level,
             score: 0
         }
-        fetch(`https://abad.onrender.com/adduser?difficulty=${level}`, {
+        fetch(`http://localhost:4500/adduser?difficulty=${level}`, {
             method: "POST",
             body: JSON.stringify(payload),
             headers: {
@@ -19,6 +21,8 @@ const Home = () => {
             }
         })
             .then(() => localStorage.setItem("level", level))
+            
+
     }
     return (
         <div style={{ width: '50%', margin: 'auto' }}>
